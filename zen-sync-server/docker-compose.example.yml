@@ -1,0 +1,24 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+# Example deployment. Put TLS in front of this (reverse proxy / Authentik's own
+# proxy) — the service speaks plain HTTP and expects to be terminated upstream.
+
+services:
+  zen-sync-server:
+    build: .
+    # Or use a prebuilt image once you publish one:
+    # image: ghcr.io/your-org/zen-sync-server:latest
+    restart: unless-stopped
+    environment:
+      OIDC_ISSUER: https://auth.example.com/application/o/zen-sync/
+      OIDC_AUDIENCE: your-authentik-client-id
+      # ENCRYPTION_KEY: ${ZEN_SYNC_ENCRYPTION_KEY}
+    volumes:
+      - zen-sync-data:/data
+    ports:
+      - '8787:8787'
+
+volumes:
+  zen-sync-data:

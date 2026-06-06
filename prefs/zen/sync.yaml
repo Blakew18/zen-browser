@@ -1,0 +1,42 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+# Phase 1 self-hosted settings sync (ZenSync). Disabled by default; the user
+# opts in and points it at their own zen-sync-server + OIDC provider (Authentik).
+
+- name: zen.sync.enabled
+  value: false
+
+# Base URL of the self-hosted zen-sync-server, e.g. https://sync.example.com
+- name: zen.sync.server-url
+  value: ""
+
+# OIDC issuer from your provider. For Authentik this looks like:
+#   https://auth.example.com/application/o/<application-slug>/
+- name: zen.sync.oidc.issuer
+  value: ""
+
+# OAuth2 / OIDC public client id (Authentik application Client ID).
+- name: zen.sync.oidc.client-id
+  value: ""
+
+- name: zen.sync.oidc.scope
+  value: "openid profile email offline_access"
+
+# Fixed loopback port for the PKCE redirect. Register
+#   http://127.0.0.1:8788/
+# as a redirect URI on the Authentik provider.
+- name: zen.sync.oidc.redirect-port
+  value: 8788
+
+# How often, in minutes, to run a background sync cycle.
+- name: zen.sync.interval-minutes
+  value: 15
+
+# Extra preference names to sync, comma-separated, on top of the built-in list.
+- name: zen.sync.extra-prefs
+  value: ""
+
+- name: zen.sync.log
+  value: false

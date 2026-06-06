@@ -1,0 +1,9 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+# Initialize settings sync before UI startup so it can schedule its first cycle.
+category browser-before-ui-startup resource:///modules/zen/ZenSync.sys.mjs ZenSync.init
+
+# Tear down the timer / loopback socket on shutdown.
+category browser-quit-application-granted resource:///modules/zen/ZenSync.sys.mjs ZenSync.uninit

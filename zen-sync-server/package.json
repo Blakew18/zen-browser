@@ -1,0 +1,18 @@
+{
+  "name": "zen-sync-server",
+  "version": "0.1.0",
+  "description": "Minimal self-hosted settings-sync backend for Zen Browser, authenticated by an OIDC provider (e.g. Authentik).",
+  "type": "module",
+  "private": true,
+  "license": "MPL-2.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "jose": "^5.9.6"
+  }
+}
